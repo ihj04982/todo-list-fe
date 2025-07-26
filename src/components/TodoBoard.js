@@ -1,17 +1,35 @@
-import React from "react";
 import TodoItem from "./TodoItem";
+import { Typography, Box, Paper } from "@mui/material";
+import { AutoAwesomeSharp } from "@mui/icons-material";
 
 const TodoBoard = ({ todoList, getTasks }) => {
   return (
-    <div>
-      <h2>Todo List</h2>
-      {todoList.length > 0 ? (
-        todoList.map((item) => <TodoItem key={item._id} item={item} todoList={todoList} getTasks={getTasks} />)
-      ) : (
-        // todos.map((todo) => <TodoItem key={todo.id} todo={todo} />)
-        <h2>There is no Item to show</h2>
-      )}
-    </div>
+    <Paper sx={{ p: 2, mt: 3, mb: 3 }}>
+      <Box>
+        <Typography
+          variant="h5"
+          gutterBottom
+          sx={{ mb: 3, textAlign: "center", display: "flex", alignItems: "center", justifyContent: "center" }}
+        >
+          <AutoAwesomeSharp sx={{ mr: 1 }} />
+          Todo List
+          <AutoAwesomeSharp sx={{ ml: 1 }} />
+        </Typography>
+        {todoList.length > 0 ? (
+          <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+            {todoList.map((item) => (
+              <TodoItem key={item._id} item={item} todoList={todoList} getTasks={getTasks} />
+            ))}
+          </Box>
+        ) : (
+          <Paper sx={{ p: 3, textAlign: "center" }}>
+            <Typography variant="h6" color="text.secondary">
+              There is no Item to show
+            </Typography>
+          </Paper>
+        )}
+      </Box>
+    </Paper>
   );
 };
 

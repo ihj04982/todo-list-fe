@@ -1,6 +1,6 @@
-import React from "react";
-import { Col, Row } from "react-bootstrap";
 import api from "../utils/api";
+import { Paper, Box, Typography, Checkbox, IconButton, Chip, Grid } from "@mui/material";
+import { CancelOutlined } from "@mui/icons-material";
 
 const TodoItem = ({ item, getTasks }) => {
   const deleteTask = async () => {
@@ -34,22 +34,44 @@ const TodoItem = ({ item, getTasks }) => {
   };
 
   return (
-    <Row>
-      <Col xs={12}>
-        <div className={`todo-item`}>
-          <div className="todo-content">{item.category}</div>
-          <div className="todo-content">{item.task}</div>
-          <div>
-            <button className="button-delete" onClick={deleteTask}>
-              삭제
-            </button>
-            <button className="button-delete" onClick={completeTask}>
-              {item.isCompleted ? "완료" : "진행중"}
-            </button>
-          </div>
-        </div>
-      </Col>
-    </Row>
+    <Paper
+      sx={{
+        opacity: item.isCompleted ? 0.7 : 1,
+        transition: "opacity 0.2s ease-in-out",
+        borderRadius: 10,
+        backgroundColor: "primary.light",
+        boxShadow: "none",
+      }}
+    >
+      <Grid container alignItems="center" spacing={2}>
+        <Grid size={{ xs: 2, md: 1 }}>
+          <Checkbox checked={item.isCompleted} onChange={completeTask} color="success" />
+        </Grid>
+        <Grid size={{ xs: 2, md: 1 }}>
+          <Chip label={item.category} size="small" color="secondary" variant="filled" />
+        </Grid>
+
+        <Grid size={{ xs: 6, md: 9 }}>
+          <Box>
+            <Typography
+              variant="body1"
+              sx={{
+                textDecoration: item.isCompleted ? "line-through" : "none",
+                color: item.isCompleted ? "text.secondary" : "text.primary",
+              }}
+            >
+              {item.task}
+            </Typography>
+          </Box>
+        </Grid>
+
+        <Grid size={{ xs: 2, md: 1 }}>
+          <IconButton onClick={deleteTask} color="warning" size="small" aria-label="delete">
+            <CancelOutlined />
+          </IconButton>
+        </Grid>
+      </Grid>
+    </Paper>
   );
 };
 
