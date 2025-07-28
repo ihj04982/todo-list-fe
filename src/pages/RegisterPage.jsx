@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { Container, Paper, Box, TextField, Button, Typography } from "@mui/material";
+import { Container, Paper, Box, TextField, Button, Typography, Link } from "@mui/material";
 import api from "utils/api";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link as RouterLink } from "react-router-dom";
 
 const RegisterPage = () => {
   const [formData, setFormData] = useState({
@@ -94,6 +94,28 @@ const RegisterPage = () => {
           <Button type="submit" variant="contained" fullWidth sx={{ mt: 2 }}>
             회원가입
           </Button>
+
+          <Typography
+            variant="body2"
+            sx={{
+              textAlign: "center",
+              color: "text.secondary",
+              mt: 2,
+            }}
+          >
+            이미 계정이 있다면?{" "}
+            <Link
+              component={RouterLink}
+              to="/login"
+              sx={{
+                color: "primary.dark",
+                fontWeight: 600,
+                textDecoration: "none",
+              }}
+            >
+              로그인 하기
+            </Link>
+          </Typography>
         </Box>
       </Paper>
     </Container>

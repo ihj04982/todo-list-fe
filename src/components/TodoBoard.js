@@ -7,9 +7,15 @@ const TodoBoard = ({ todoList, getTasks }) => {
     <Paper sx={{ p: 2, mt: 3, mb: 3 }}>
       <Box>
         <Typography
-          variant="h5"
-          gutterBottom
-          sx={{ mb: 3, textAlign: "center", display: "flex", alignItems: "center", justifyContent: "center" }}
+          variant="h6"
+          sx={{
+            mb: 2,
+            fontWeight: "bold",
+            textAlign: "center",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
         >
           <AutoAwesomeSharp sx={{ mr: 1 }} />
           Todo List
