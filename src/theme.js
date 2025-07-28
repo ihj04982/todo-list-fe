@@ -79,6 +79,7 @@ const theme = createTheme({
       color: paletteColours.text.primary,
     },
     body1: {
+      fontFamily: ["Roboto", "Noto Sans KR", "sans-serif"].join(", "),
       fontSize: "1rem",
       lineHeight: 1.6,
       color: paletteColours.text.primary,
