@@ -1,15 +1,16 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import api from "../utils/api";
 import TodoBoard from "../components/TodoBoard";
-import { Container, Grid, TextField, Button, Box, Paper, Typography } from "@mui/material";
+import { Container, Grid, TextField, Button, Box, Paper, Typography, IconButton, Chip } from "@mui/material";
 import styled from "@emotion/styled";
+import LogoutIcon from "@mui/icons-material/Logout";
+import PersonIcon from "@mui/icons-material/Person";
 
-// 스타일드 컴포넌트 만들기, textstroke 적용
 const AppTitle = styled(Typography)(({ theme }) => ({
   textShadow: `1px 1px 1px ${theme.palette.text.primary}`,
 }));
 
-const TodoPage = () => {
+const TodoPage = ({ user }) => {
   const [todoList, setTodoList] = useState([]);
   const [todoValue, setTodoValue] = useState("");
   const [categoryValue, setCategoryValue] = useState("");
@@ -46,8 +47,26 @@ const TodoPage = () => {
     }
   };
 
+  const logout = () => {
+    sessionStorage.removeItem("token");
+    window.location.href = "/login";
+  };
+
+  console.log(user);
   return (
     <Container>
+      <Box mt={2} sx={{ display: "flex", justifyContent: "flex-end" }}>
+        {user && (
+          <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+            <IconButton title={user.name}>
+              <PersonIcon color="primary" />
+            </IconButton>
+            <IconButton onClick={logout}>
+              <LogoutIcon color="primary" />
+            </IconButton>
+          </div>
+        )}
+      </Box>
       <AppTitle
         variant="h1"
         sx={{

@@ -4,9 +4,11 @@ const api = axios.create({
   baseURL: `${process.env.REACT_APP_BACKEND_URL}/api`,
   headers: {
     "Content-Type": "application/json",
+    Authorization: `Bearer ${sessionStorage.getItem("token")}`,
   },
 });
 /**
+ *
  * console.log all requests and responses
  */
 api.interceptors.request.use(

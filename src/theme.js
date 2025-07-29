@@ -151,10 +151,11 @@ const theme = createTheme({
       },
       styleOverrides: {
         root: {
-          borderRadius: 4,
+          borderRadius: 8,
           textTransform: "none",
           padding: "6px 16px",
           fontWeight: 600,
+          border: `2px solid ${paletteColours.text.primary}`,
         },
         containedPrimary: {
           color: paletteColours.primary.contrastText,
@@ -178,17 +179,6 @@ const theme = createTheme({
         },
       },
     },
-    MuiLink: {
-      styleOverrides: {
-        root: {
-          color: paletteColours.primary.dark,
-          "&:hover": {
-            color: paletteColours.primary.main,
-            textDecoration: "underline",
-          },
-        },
-      },
-    },
     MuiTextField: {
       defaultProps: {
         variant: "outlined",
@@ -198,20 +188,21 @@ const theme = createTheme({
           "& .MuiOutlinedInput-root": {
             borderRadius: 8,
             backgroundColor: paletteColours.background.paper,
+            border: `2px solid ${paletteColours.text.primary}`,
             "& fieldset": {
-              borderColor: paletteColours.divider,
+              border: "none",
             },
             "&:hover fieldset": {
-              borderColor: paletteColours.primary.main,
+              border: "none",
             },
             "&.Mui-focused fieldset": {
-              borderColor: paletteColours.primary.dark,
+              border: "none",
             },
           },
           "& .MuiInputLabel-root": {
-            color: paletteColours.text.secondary,
+            color: paletteColours.text.primary,
             "&.Mui-focused": {
-              color: paletteColours.primary.dark,
+              color: paletteColours.text.primary,
             },
           },
         },

@@ -1,66 +1,43 @@
 import TodoPage from "./pages/TodoPage";
 import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
-import { Routes, Route, Navigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-
-const ProtectedRoute = ({ children }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(null);
-
-  useEffect(() => {
-    const token = sessionStorage.getItem("token");
-    setIsAuthenticated(!!token);
-  }, []);
-
-  if (isAuthenticated === null) {
-    return null;
-  }
-
-  return isAuthenticated ? children : <Navigate to="/login" replace />;
-};
-
-const AuthRoute = ({ children }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(null);
-
-  useEffect(() => {
-    const token = sessionStorage.getItem("token");
-    setIsAuthenticated(!!token);
-  }, []);
-
-  if (isAuthenticated === null) {
-    return null;
-  }
-
-  return isAuthenticated ? <Navigate to="/" replace /> : children;
-};
+import { Routes, Route } from "react-router-dom";
+import { useState, useEffect } from "react";
+import PrivateRoute from "./route/PrivateRoute";
+import api from "./utils/api";
 
 function App() {
+  const [user, setUser] = useState(null);
+
+  const getUser = async () => {
+    try {
+      const token = sessionStorage.getItem("token");
+      if (token) {
+        const response = await api.get("/user/me");
+        console.log(token);
+        setUser(response.data.user);
+      }
+    } catch (error) {
+      setUser(null);
+    }
+  };
+
+  useEffect(() => {
+    getUser();
+  }, []);
+
   return (
     <Routes>
       <Route
         path="/"
         element={
-          <ProtectedRoute>
-            <TodoPage />
-          </ProtectedRoute>
+          <PrivateRoute user={user}>
+            <TodoPage user={user} />
+          </PrivateRoute>
         }
       />
-      <Route
-        path="/register"
-        element={
-          <AuthRoute>
-            <RegisterPage />
-          </AuthRoute>
-        }
-      />
-      <Route
-        path="/login"
-        element={
-          <AuthRoute>
-            <LoginPage />
-          </AuthRoute>
-        }
-      />
+      <Route path="/register" element={<RegisterPage />} />
+      <Route path="/login" element={<LoginPage user={user} setUser={setUser} />} />
     </Routes>
   );
 }

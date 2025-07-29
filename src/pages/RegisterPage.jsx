@@ -43,13 +43,39 @@ const RegisterPage = () => {
 
   return (
     <Container
-      maxWidth="sm"
+      maxWidth="lg"
       sx={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center" }}
     >
-      <Paper sx={{ p: 4, width: "100%", maxWidth: 400 }}>
-        <Box component="form" onSubmit={handleSubmit} sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-          <Typography variant="h5" align="center" mb={2}>
-            회원가입
+      <Paper
+        sx={{
+          p: 4,
+          width: "100%",
+          maxWidth: 1000,
+          backgroundColor: "primary.main",
+          borderRadius: 4,
+          border: "2px solid",
+          borderColor: "text.primary",
+          boxShadow: "none",
+          display: "flex",
+          flexDirection: "row",
+          gap: 4,
+        }}
+      >
+        <Box
+          component="form"
+          onSubmit={handleSubmit}
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            flex: 1,
+            minWidth: 0,
+          }}
+        >
+          <Typography variant="h3" align="center" fontFamily="LovelaceScript">
+            Join & Grow
+          </Typography>
+          <Typography align="center" fontFamily="Nesatho">
+            Start Your Growth Journey
           </Typography>
           <TextField
             label="이름"
@@ -91,7 +117,7 @@ const RegisterPage = () => {
             margin="normal"
           />
           {error && <Typography color="error">{error}</Typography>}
-          <Button type="submit" variant="contained" fullWidth sx={{ mt: 2 }}>
+          <Button color="info" type="submit" variant="contained" fullWidth sx={{ mt: 2 }}>
             회원가입
           </Button>
 
@@ -108,7 +134,7 @@ const RegisterPage = () => {
               component={RouterLink}
               to="/login"
               sx={{
-                color: "primary.dark",
+                color: "text.primary",
                 fontWeight: 600,
                 textDecoration: "none",
               }}
@@ -116,6 +142,25 @@ const RegisterPage = () => {
               로그인 하기
             </Link>
           </Typography>
+        </Box>
+        <Box
+          sx={{
+            display: { xs: "none", md: "flex" },
+            alignItems: "center",
+            justifyContent: "center",
+            minWidth: 0,
+          }}
+        >
+          <img
+            src="https://picsum.photos/400/500"
+            alt="Register"
+            style={{
+              width: "100%",
+              height: "auto",
+              maxWidth: "400px",
+              borderRadius: "8px",
+            }}
+          />
         </Box>
       </Paper>
     </Container>
