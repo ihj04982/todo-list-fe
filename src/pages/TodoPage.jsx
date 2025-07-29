@@ -10,7 +10,7 @@ const AppTitle = styled(Typography)(({ theme }) => ({
   textShadow: `1px 1px 1px ${theme.palette.text.primary}`,
 }));
 
-const TodoPage = ({ user }) => {
+const TodoPage = ({ user, setUser }) => {
   const [todoList, setTodoList] = useState([]);
   const [todoValue, setTodoValue] = useState("");
   const [categoryValue, setCategoryValue] = useState("");
@@ -49,6 +49,7 @@ const TodoPage = ({ user }) => {
 
   const logout = () => {
     sessionStorage.removeItem("token");
+    setUser(null);
     window.location.href = "/login";
   };
 

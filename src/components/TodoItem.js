@@ -41,17 +41,21 @@ const TodoItem = ({ item, getTasks }) => {
         borderRadius: 10,
         backgroundColor: "primary.light",
         boxShadow: "none",
+        border: "2px solid",
       }}
     >
-      <Grid container alignItems="center" spacing={2}>
-        <Grid size={{ xs: 2, md: 1 }}>
+      <Grid container alignItems="center" spacing={1}>
+        <Grid size={{ xs: 1, md: 1 }}>
           <Checkbox checked={item.isCompleted} onChange={completeTask} color="success" />
         </Grid>
-        <Grid size={{ xs: 2, md: 1 }}>
-          <Chip label={item.category} size="small" color="secondary" variant="filled" />
+        <Grid size={{ xs: 3, md: 3 }}>
+          <Box sx={{ display: "flex", gap: 1 }}>
+            {item.category && <Chip label={item.category} size="small" color="secondary" variant="filled" />}
+            {item.author && <Chip label={item.author.name} size="small" color="info.dark" variant="outlined" />}
+          </Box>
         </Grid>
 
-        <Grid size={{ xs: 6, md: 9 }}>
+        <Grid size={{ xs: 7, md: 7 }}>
           <Box>
             <Typography
               variant="body1"
@@ -65,7 +69,7 @@ const TodoItem = ({ item, getTasks }) => {
           </Box>
         </Grid>
 
-        <Grid size={{ xs: 2, md: 1 }}>
+        <Grid size={{ xs: 1, md: 1 }} sx={{ display: "flex", justifyContent: "flex-end" }}>
           <IconButton onClick={deleteTask} color="warning" size="small" aria-label="delete">
             <CancelOutlined />
           </IconButton>
