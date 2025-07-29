@@ -50,7 +50,7 @@ const RegisterPage = () => {
         sx={{
           p: 4,
           width: "100%",
-          maxWidth: 1000,
+          maxWidth: 900,
           backgroundColor: "primary.main",
           borderRadius: 4,
           border: "2px solid",
@@ -152,7 +152,7 @@ const RegisterPage = () => {
           }}
         >
           <img
-            src="https://picsum.photos/400/500"
+            src="/images/register.jpg"
             alt="Register"
             style={{
               width: "100%",
