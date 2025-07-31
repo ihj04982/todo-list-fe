@@ -4,7 +4,6 @@ const api = axios.create({
   baseURL: `${process.env.REACT_APP_BACKEND_URL}/api`,
   headers: {
     "Content-Type": "application/json",
-    Authorization: `Bearer ${sessionStorage.getItem("token")}`,
   },
 });
 /**
@@ -13,6 +12,10 @@ const api = axios.create({
  */
 api.interceptors.request.use(
   (request) => {
+    const token = sessionStorage.getItem("token");
+    if (token) {
+      request.headers.Authorization = `Bearer ${token}`;
+    }
     console.log("Starting Request", request);
     return request;
   },

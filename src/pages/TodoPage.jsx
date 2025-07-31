@@ -36,7 +36,7 @@ const TodoPage = ({ user, setUser }) => {
         category: categoryValue,
       });
       if (response.status === 200) {
-        setTodoList([...todoList, response.data.data]);
+        getTasks();
         setTodoValue("");
         setCategoryValue("");
       } else {
@@ -53,7 +53,6 @@ const TodoPage = ({ user, setUser }) => {
     window.location.href = "/login";
   };
 
-  console.log(user);
   return (
     <Container>
       <Box mt={2} sx={{ display: "flex", justifyContent: "flex-end" }}>

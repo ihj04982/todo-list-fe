@@ -14,7 +14,6 @@ function App() {
       const token = sessionStorage.getItem("token");
       if (token) {
         const response = await api.get("/user/me");
-        console.log(token);
         setUser(response.data.user);
       }
     } catch (error) {

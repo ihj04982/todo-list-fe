@@ -38,7 +38,6 @@ const LoginPage = ({ user, setUser }) => {
   };
 
   if (user) {
-    console.log("user");
     return <Navigate to="/" />;
   }
 
